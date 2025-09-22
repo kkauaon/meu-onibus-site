@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title><%= bus.name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Estilo iOS 6 herdado -->
+  <link rel="stylesheet" href="/style.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.3/dist/leaflet.css"/>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+    .navbar {
+      display: -webkit-box; /* Older Safari, iOS 6 */
+      display: -ms-flexbox; /* Internet Explorer 10 */
+      display: -webkit-flex; /* Safari 6.1+, iOS 7.1+ */
+      display: flex; /* Modern browsers */
+      align-items: center;
+    }
+    .back-btn {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-right: 10px;
+      background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#cfcfcf));
+      border: 1px solid #999;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #000;
+      text-decoration: none;
+      -webkit-box-shadow: inset 0 1px #fff;
+    }
+    .back-btn:active {
+      background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#fefefe));
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <a href="javascript:history.back()" class="back-btn">Voltar</a>
+    <h1><%= titulo %></h1>
+  </header>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@0.7.3/dist/leaflet.js"></script>
+
+
+  <script>
+    // Posição passada do servidor
+    var busLat = "<%= bus.lat %>";
+    var busLng = "<%= bus.lng %>";
+
+    var stopLat = "<%= parada.latLng.lat %>";
+    var stopLng = "<%= parada.latLng.lng %>";
+
+    // Inicializa o mapa
+    var map = L.map('map').setView([busLat, busLng], 15);
+
+    // Tile Layer
+    L.tileLayer('/tiles/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    var blackIcon = new L.Icon({
+      iconUrl: 'blackMarker.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
+    // Marcador do ônibus
+    var busMarker = L.marker([busLat, busLng])
+    busMarker.addTo(map)
+    busMarker.bindPopup("Ônibus<br><b><%= bus.codVehicle %></b>")
+    busMarker.openPopup();
+
+    // Marcador da parada
+    var stopMarker = L.marker([stopLat, stopLng], { icon: blackIcon })
+    stopMarker.addTo(map)
+
+    var group = new L.featureGroup([busMarker, stopMarker]);
+
+    map.fitBounds(group.getBounds().pad(0.5));
+
+    var linelayer;
+    var linestringstyle = {color: "#4917ff", "weight":6};
+
+    function addLine(coords) {
+      linelayer = L.polyline(coords, linestringstyle).addTo(map);
+    }
+
+    addLine(<%- JSON.stringify(pontos) %>);
+  </script>
+</body>
+</html>

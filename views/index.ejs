@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= titulo %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h1><%= titulo %></h1>
+  </header>
+
+  <main>
+    <h2 class="section-title">Escolha a parada</h2>
+    <ul id="stop-sel" class="ios-list">
+      <% paradas.forEach(function(parada) { %>
+        <li>
+          <a href="/route/<%= parada.id %>"><%= parada.nome %></a>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

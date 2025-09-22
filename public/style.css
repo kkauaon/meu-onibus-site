@@ -1,0 +1,153 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #c7ced3 url("/original.png");
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+  }
+  
+  .navbar {
+    background: -webkit-gradient(linear, left top, left bottom,
+      from(#b0c6de), to(#6a84a6));
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #4c5d73;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .section-title {
+    margin: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Lista estilo UITableView */
+  .ios-list {
+    list-style: none;
+    margin: 10px 20px;
+    padding: 0;
+    border: 1px solid #c8c7cc;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  .ios-list li {
+    border-bottom: 1px solid #c8c7cc;
+  }
+  
+  .ios-list li:last-child {
+    border-bottom: none;
+  }
+  
+  #stop-sel.ios-list li a {
+    display: block;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #007aff;
+    text-decoration: none;
+  }
+
+  #bus-sel.ios-list li a {
+    display: block;
+    padding: 0 0;
+    text-decoration: none;
+  }
+  
+  .ios-list li a:active {
+    background: #d9d9d9;
+  }
+  
+  /* Card simples */
+  .ios-card {
+    margin: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #c8c7cc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Botão estilo iOS 6 */
+  .ios-btn {
+    display: inline-block;
+    padding: 8px 25px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #28597a;
+    border-radius: 6px;
+    background: -webkit-gradient(linear, left top, left bottom,
+      from(#6db3f2), to(#1e69de));
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),
+                        0 1px 2px rgba(0,0,0,0.2);
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .ios-btn:active {
+    background: -webkit-gradient(linear, left top, left bottom,
+      from(#1e69de), to(#6db3f2));
+  }
+  
+  .back-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .bus-info {
+    display: -webkit-box;     
+    -webkit-box-align: center;   /* alinha no meio */
+    padding: 6px 0;              /* menos padding */
+    min-height: 44px;            /* altura mínima estilo iOS */
+  }
+  
+  .bus-time {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 55px;
+    text-align: right;
+    line-height: 8px;
+  }
+  
+  .bus-details {
+    -webkit-box-flex: 1;
+    font-size: 14px;
+    color: #333;
+    line-height: 16px;           /* mais compacto */
+    white-space: normal;
+    word-wrap: break-word;
+    margin-right: 10px;
+  }
+  
+  .bus-direction {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .bus-link {
+    appearance: none;         /* Safari moderno / iOS */
+    -webkit-appearance: none; /* Safari antigo */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }

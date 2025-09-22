@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= titulo %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h1><%= titulo %></h1>
+  </header>
+
+  <main>
+    <h2 class="section-title">Ônibus chegando</h2>
+
+    <ul id="bus-sel" class="ios-list">
+      <% onibus.forEach(function(bus, i) { %>
+        <li>
+          <form method="POST" action="/bus" id="busForm-<%= i %>">
+            <input type="hidden" name="lat" value="<%= bus.geo.lat %>">
+            <input type="hidden" name="lng" value="<%= bus.geo.lng %>">
+            <input type="hidden" name="codVehicle" value="<%= bus.codVehicle %>">
+            <input type="hidden" name="nameLine" value="<%= bus.nome %>">
+            <input type="hidden" name="sentido" value="<%= bus.sentido %>">
+            <input type="hidden" name="minutos" value="<%= bus.minutos %>">
+            <input type="hidden" name="busServiceId" value="<%= bus.busServiceId %>">
+            <input type="hidden" name="rota" value="<%= bus.rota %>">
+            <input type="hidden" name="paradaId" value="<%= paradaId %>">
+    
+            <!-- Botão estilizado como link -->
+            <button type="submit" class="bus-link">
+              <div class="bus-info">
+                <span class="bus-time"><%= bus.minutos %> min</span>
+                <div class="bus-details">
+                  <strong><%= bus.nome %></strong><br />
+                  <span class="bus-direction"><%= bus.sentido %></span>
+                </div>
+              </div>
+            </button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+    
+
+    <div class="back-container">
+      <a href="/" class="ios-btn">Voltar</a>
+    </div>
+
+    <br>
+  </main>
+</body>
+</html>
